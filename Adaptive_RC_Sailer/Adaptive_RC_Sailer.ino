@@ -1,64 +1,70 @@
-/* Adaptive RC Sailer (12-28-2020)
-  This software is distributed under the terms of the GNU GPLv3.0 License.
-  Copyright (c) 2020
-  Author: Dave Kender <adaptivercsailing@adaptivercsailing.gmail.com>
-  Visit web page at www.adaptivercsailer.com
-  and GitHub at github.com/adaptivercsailing/adaptivercsailing
+/*
 
-  ###################################  IMPORTANT  ##############################
-  ###                                                                        ###
-  ###  Current design is based on 5.0 VDC radio system (e.g. HiTec LASER 4)  ###
-  ###  If 3.3 VDC (e.g. FlySky)is used, see alternate PCB layout.            ###
-  ###                                                                        ###
-  ###  See additional design note below.                                     ###
-  ###                                                                        ###
-  ###################################  IMPORTANT  ##############################
+Adaptive RC Sailer (12-28-2020)
+This software is distributed under the terms of the GNU GPLv3.0 License.
+Copyright (c) 2020
+Author: Dave Kender <adaptivercsailing@adaptivercsailing.gmail.com>
+Visit web page at www.adaptivercsailer.com
+and GitHub at github.com/adaptivercsailing/adaptivercsailing
 
-  Requires bounce2 if not already installed in Arduino library
-  https://www.arduinolibraries.info/libraries/bounce2
+###################################  IMPORTANT  ##############################
+###                                                                        ###
+###  Current design is based on 5.0 VDC radio system (e.g. HiTec LASER 4)  ###
+###  If 3.3 VDC (e.g. FlySky)is used, see alternate PCB layout.            ###
+###                                                                        ###
+###  See additional design note below.                                     ###
+###                                                                        ###
+###################################  IMPORTANT  ##############################
 
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to deal
-  in the Software without restriction, including without limitation the rights
-  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
+Requires bounce2 if not already installed in Arduino library
+https://www.arduinolibraries.info/libraries/bounce2
 
-  The above copyright notice and this permission notice shall be included in all
-  copies or substantial portions of the Software.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 */
 
-/* Additional Design Notes:
+/*
 
-   Adaptive RC Sailer incorporates X9C103 Digital Potentiometers
-   Input Control Signals (momentary ON/OFF): Sails(In & Out) and Rudder(Left & Right)
-   Output Signals to RC Transmitter = TX Sails & TX Rudder
-   Design Note: This version does not automatically return the rudder to the center position.
+Additional Design Notes:
 
-   X9C Notes:
-   !INC =  1(Inc/Dec)  Vcc =   8
-   U/!D =  2(Up/Dwn)   !CS =   7(Chip Select)
-   Vh/Rh = 3           Vl/Vr = 6
-   GND =   4           Vw/Rw = 5 (Output Signal)
-   Note: Must keep !INC LOW while taking !CS HIGH
-         U/!D may be changed while !CS is LOW
+Adaptive RC Sailer incorporates X9C103 Digital Potentiometers
+Input Control Signals (momentary ON/OFF): Sails(In & Out) and Rudder(Left & Right)
+Output Signals to RC Transmitter = TX Sails & TX Rudder
+Design Note: This version does not automatically return the rudder to the center position.
 
-   Digital Pins D0 - D13 = Pin # 0 - 13
-   Analog Pins  A0 - A5 = Pin # 14 - 19
-   A0=14   A1=15   A2=16   A3=17   A4=18   A5=19
+X9C Notes:
+!INC =  1(Inc/Dec)  Vcc =   8
+U/!D =  2(Up/Dwn)   !CS =   7(Chip Select)
+Vh/Rh = 3           Vl/Vr = 6
+GND =   4           Vw/Rw = 5 (Output Signal)
+Note: Must keep !INC LOW while taking !CS HIGH
+     U/!D may be changed while !CS is LOW
 
-   X9C_A = Sail Control
-   X9C_B = Rudder Control
+Digital Pins D0 - D13 = Pin # 0 - 13
+Analog Pins  A0 - A5 = Pin # 14 - 19
+A0=14   A1=15   A2=16   A3=17   A4=18   A5=19
 
-   Serial Monitor Output is for debugging purposes only.
-   Computer values are meant to indicate proper operation, NOT actual voltages.
+X9C_A = Sail Control
+X9C_B = Rudder Control
+
+Serial Monitor Output is for debugging purposes only.
+Computer values are meant to indicate proper operation, NOT actual voltages.
+
 */
 
 #include <Bounce2.h>
