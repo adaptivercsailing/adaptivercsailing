@@ -1,4 +1,4 @@
 # Ignore Eclipse files
-.cproject
-.project
-.settings/
+# .cproject
+# .project
+# .settings/
