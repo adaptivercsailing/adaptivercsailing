@@ -16,7 +16,7 @@ THIS_DIR="$(dirname "$THIS_PATH")"
 # echo "THIS_DIR = \"$THIS_DIR\"" # for debugging
 
 # Find all files in the specified directory which end in .ino, .cpp, etc.
-FILE_LIST=$(find "$THIS_DIR" | grep -E ".*(\.ino|\.cpp|\.c|\.h|\.hpp|\.hh)")
+FILE_LIST=$(find "$THIS_DIR" | grep -E ".*(\.ino|\.cpp|\.c|\.h|\.hpp|\.hh)$")
 
 # Format them
 clang-format --verbose -i --style=file "$FILE_LIST"

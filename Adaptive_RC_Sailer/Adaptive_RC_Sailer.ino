@@ -64,14 +64,14 @@
 #include <Bounce2.h>
 
 // Sails Control Variables X9C_A
-#define X9C_A_Sails_ChipSelectPin7 11       // D11
-#define X9C_A_Sails_UpDownPin2 15           // A1
-#define X9C_A_Sails_IncDecPin1 14           // A0
-#define SailsOutSwitchPin 3                 // D3 Ring
-#define SailsInSwitchPin 2                  // D2 Tip
+#define X9C_A_Sails_ChipSelectPin7 11  // D11
+#define X9C_A_Sails_UpDownPin2 15      // A1
+#define X9C_A_Sails_IncDecPin1 14      // A0
+#define SailsOutSwitchPin 3            // D3 Ring
+#define SailsInSwitchPin 2             // D2 Tip
 // X9C_A_Sails #A Pin#5=Sails Servo         // Tip
-int SailsIn;                                // SailsIn = Decrement
-int SailsOut;                               // SailsOut = Increment
+int SailsIn;   // SailsIn = Decrement
+int SailsOut;  // SailsOut = Increment
 int SyncDelay = 5;
 int CountDelay = 10;
 int SailsCount_n = 50;
@@ -81,16 +81,16 @@ Bounce debouncer1 = Bounce();
 Bounce debouncer2 = Bounce();
 
 // Rudder Control Variables X9C_B
-#define X9C_B_Rudder_ChipSelectPin7 10      // D10
-#define X9C_B_Rudder_UpDownPin2 5           // D5
-#define X9C_B_Rudder_IncDecPin1 4           // D4
-#define RudderLeftSwitchPin 17              // A3 Ring
-#define RudderRightSwitchPin 16             // A2 Tip
+#define X9C_B_Rudder_ChipSelectPin7 10  // D10
+#define X9C_B_Rudder_UpDownPin2 5       // D5
+#define X9C_B_Rudder_IncDecPin1 4       // D4
+#define RudderLeftSwitchPin 17          // A3 Ring
+#define RudderRightSwitchPin 16         // A2 Tip
 // X9C_B_Rudder #B Pin#5=Rudder Servo       // Ring
-int RudderLeft;                             // RudderLeft = Decrement
-int RudderRight;                            // RudderRight = Increment
-//int SyncDelay=5;
-//int CountDelay=10;
+int RudderLeft;   // RudderLeft = Decrement
+int RudderRight;  // RudderRight = Increment
+// int SyncDelay=5;
+// int CountDelay=10;
 int RudderCount_n = 50;
 int RudderCountMin = 20;
 int RudderCountMax = 70;
@@ -100,190 +100,214 @@ Bounce debouncer4 = Bounce();
 void initialize_sails()
 // Initializes X9C_A_Sails to midrange position and indexes Counter to 50.
 {
-  for (int i = 0; i < 102; i++)
-  {
-    digitalWrite(X9C_A_Sails_ChipSelectPin7, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_A_Sails_UpDownPin2, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_A_Sails_IncDecPin1, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_A_Sails_ChipSelectPin7, HIGH);
-    delay(SyncDelay);
-    digitalWrite(X9C_A_Sails_IncDecPin1, HIGH);
-  }
+    for (int i = 0; i < 102; i++)
+    {
+        digitalWrite(X9C_A_Sails_ChipSelectPin7, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_A_Sails_UpDownPin2, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_A_Sails_IncDecPin1, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_A_Sails_ChipSelectPin7, HIGH);
+        delay(SyncDelay);
+        digitalWrite(X9C_A_Sails_IncDecPin1, HIGH);
+    }
 
-  for (int i = 0; i < 50; i++)
-  {
-    digitalWrite(X9C_A_Sails_ChipSelectPin7, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_A_Sails_UpDownPin2, HIGH);
-    delay(SyncDelay);
-    digitalWrite(X9C_A_Sails_IncDecPin1, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_A_Sails_ChipSelectPin7, HIGH);
-    delay(SyncDelay);
-    digitalWrite(X9C_A_Sails_IncDecPin1, HIGH);
-  }
+    for (int i = 0; i < 50; i++)
+    {
+        digitalWrite(X9C_A_Sails_ChipSelectPin7, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_A_Sails_UpDownPin2, HIGH);
+        delay(SyncDelay);
+        digitalWrite(X9C_A_Sails_IncDecPin1, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_A_Sails_ChipSelectPin7, HIGH);
+        delay(SyncDelay);
+        digitalWrite(X9C_A_Sails_IncDecPin1, HIGH);
+    }
 }
 
 void initialize_rudder()
 // Initializes X9C_B_Rudder to midrange position and indexes Counter to 50.
 {
-  for (int i = 0; i < 102; i++)
-  {
-    digitalWrite(X9C_B_Rudder_ChipSelectPin7, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_B_Rudder_UpDownPin2, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_B_Rudder_IncDecPin1, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_B_Rudder_ChipSelectPin7, HIGH);
-    delay(SyncDelay);
-    digitalWrite(X9C_B_Rudder_IncDecPin1, HIGH);
-  }
+    for (int i = 0; i < 102; i++)
+    {
+        digitalWrite(X9C_B_Rudder_ChipSelectPin7, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_B_Rudder_UpDownPin2, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_B_Rudder_IncDecPin1, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_B_Rudder_ChipSelectPin7, HIGH);
+        delay(SyncDelay);
+        digitalWrite(X9C_B_Rudder_IncDecPin1, HIGH);
+    }
 
-  for (int i = 0; i < 50; i++)
-  {
-    digitalWrite(X9C_B_Rudder_ChipSelectPin7, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_B_Rudder_UpDownPin2, HIGH);
-    delay(SyncDelay);
-    digitalWrite(X9C_B_Rudder_IncDecPin1, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_B_Rudder_ChipSelectPin7, HIGH);
-    delay(SyncDelay);
-    digitalWrite(X9C_B_Rudder_IncDecPin1, HIGH);
-  }
+    for (int i = 0; i < 50; i++)
+    {
+        digitalWrite(X9C_B_Rudder_ChipSelectPin7, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_B_Rudder_UpDownPin2, HIGH);
+        delay(SyncDelay);
+        digitalWrite(X9C_B_Rudder_IncDecPin1, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_B_Rudder_ChipSelectPin7, HIGH);
+        delay(SyncDelay);
+        digitalWrite(X9C_B_Rudder_IncDecPin1, HIGH);
+    }
 }
 
 void sails_control()
 {
-  if (SailsIn == 0)
-  {
-    SailsCount_n = SailsCount_n - 1;
-    if (SailsCount_n <= SailsCountMin)
+    if (SailsIn == 0)
     {
-      SailsCount_n = SailsCount_n + 1;
-      goto SailsExit;
+        SailsCount_n = SailsCount_n - 1;
+        if (SailsCount_n <= SailsCountMin)
+        {
+            SailsCount_n = SailsCount_n + 1;
+            goto SailsExit;
+        }
+        digitalWrite(X9C_A_Sails_ChipSelectPin7, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_A_Sails_UpDownPin2, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_A_Sails_IncDecPin1, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_A_Sails_ChipSelectPin7, HIGH);
+        delay(SyncDelay);
+        digitalWrite(X9C_A_Sails_IncDecPin1, HIGH);
+        Serial.print("nCount(Sails In) = ");
+        Serial.println(SailsCount_n);
+        delay(CountDelay);
     }
-    digitalWrite(X9C_A_Sails_ChipSelectPin7, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_A_Sails_UpDownPin2, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_A_Sails_IncDecPin1, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_A_Sails_ChipSelectPin7, HIGH);
-    delay(SyncDelay);
-    digitalWrite(X9C_A_Sails_IncDecPin1, HIGH);
-    Serial.print("nCount(Sails In) = "); Serial.println(SailsCount_n);
-    delay(CountDelay);
-  }
 
-  if (SailsOut == 0)
-  {
-    SailsCount_n = SailsCount_n + 1;
-    if (SailsCount_n >= SailsCountMax)
+    if (SailsOut == 0)
     {
-      SailsCount_n = SailsCount_n - 1;
-      goto SailsExit;
+        SailsCount_n = SailsCount_n + 1;
+        if (SailsCount_n >= SailsCountMax)
+        {
+            SailsCount_n = SailsCount_n - 1;
+            goto SailsExit;
+        }
+        digitalWrite(X9C_A_Sails_ChipSelectPin7, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_A_Sails_UpDownPin2, HIGH);
+        delay(SyncDelay);
+        digitalWrite(X9C_A_Sails_IncDecPin1, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_A_Sails_ChipSelectPin7, HIGH);
+        delay(SyncDelay);
+        digitalWrite(X9C_A_Sails_IncDecPin1, HIGH);
+        Serial.print("nCount(Sails Out) = ");
+        Serial.println(SailsCount_n);
+        delay(CountDelay);
     }
-    digitalWrite(X9C_A_Sails_ChipSelectPin7, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_A_Sails_UpDownPin2, HIGH);
-    delay(SyncDelay);
-    digitalWrite(X9C_A_Sails_IncDecPin1, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_A_Sails_ChipSelectPin7, HIGH);
-    delay(SyncDelay);
-    digitalWrite(X9C_A_Sails_IncDecPin1, HIGH);
-    Serial.print("nCount(Sails Out) = "); Serial.println(SailsCount_n);
-    delay(CountDelay);
-  }
-SailsExit: {}
+SailsExit:
+{
+}
 }
 
 void rudder_control()
 {
-  if (RudderLeft == 0)
-  {
-    RudderCount_n = RudderCount_n - 1;
-    if (RudderCount_n <= RudderCountMin)
+    if (RudderLeft == 0)
     {
-      RudderCount_n = RudderCount_n + 1;
-      goto RudderExit;
+        RudderCount_n = RudderCount_n - 1;
+        if (RudderCount_n <= RudderCountMin)
+        {
+            RudderCount_n = RudderCount_n + 1;
+            goto RudderExit;
+        }
+        digitalWrite(X9C_B_Rudder_ChipSelectPin7, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_B_Rudder_UpDownPin2, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_B_Rudder_IncDecPin1, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_B_Rudder_ChipSelectPin7, HIGH);
+        delay(SyncDelay);
+        digitalWrite(X9C_B_Rudder_IncDecPin1, HIGH);
+        Serial.print("nCount(Rudder Left) = ");
+        Serial.println(RudderCount_n);
+        delay(CountDelay);
     }
-    digitalWrite(X9C_B_Rudder_ChipSelectPin7, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_B_Rudder_UpDownPin2, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_B_Rudder_IncDecPin1, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_B_Rudder_ChipSelectPin7, HIGH);
-    delay(SyncDelay);
-    digitalWrite(X9C_B_Rudder_IncDecPin1, HIGH);
-    Serial.print("nCount(Rudder Left) = "); Serial.println(RudderCount_n);
-    delay(CountDelay);
-  }
 
-  if (RudderRight == 0)
-  {
-    RudderCount_n = RudderCount_n + 1;
-    if (RudderCount_n >= RudderCountMax)
+    if (RudderRight == 0)
     {
-      RudderCount_n = RudderCount_n - 1;
-      goto RudderExit;
+        RudderCount_n = RudderCount_n + 1;
+        if (RudderCount_n >= RudderCountMax)
+        {
+            RudderCount_n = RudderCount_n - 1;
+            goto RudderExit;
+        }
+        digitalWrite(X9C_B_Rudder_ChipSelectPin7, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_B_Rudder_UpDownPin2, HIGH);
+        delay(SyncDelay);
+        digitalWrite(X9C_B_Rudder_IncDecPin1, LOW);
+        delay(SyncDelay);
+        digitalWrite(X9C_B_Rudder_ChipSelectPin7, HIGH);
+        delay(SyncDelay);
+        digitalWrite(X9C_B_Rudder_IncDecPin1, HIGH);
+        Serial.print("nCount(Rudder Right) = ");
+        Serial.println(RudderCount_n);
+        delay(CountDelay);
     }
-    digitalWrite(X9C_B_Rudder_ChipSelectPin7, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_B_Rudder_UpDownPin2, HIGH);
-    delay(SyncDelay);
-    digitalWrite(X9C_B_Rudder_IncDecPin1, LOW);
-    delay(SyncDelay);
-    digitalWrite(X9C_B_Rudder_ChipSelectPin7, HIGH);
-    delay(SyncDelay);
-    digitalWrite(X9C_B_Rudder_IncDecPin1, HIGH);
-    Serial.print("nCount(Rudder Right) = "); Serial.println(RudderCount_n);
-    delay(CountDelay);
-  }
-RudderExit: {}
+RudderExit:
+{
+}
 }
 
 void setup()
 {
-  pinMode(SailsInSwitchPin, INPUT_PULLUP);
-  pinMode(SailsOutSwitchPin, INPUT_PULLUP);
-  pinMode(X9C_A_Sails_ChipSelectPin7, OUTPUT);
-  pinMode(X9C_A_Sails_UpDownPin2, OUTPUT);
-  pinMode(X9C_A_Sails_IncDecPin1, OUTPUT);
-  pinMode(RudderLeftSwitchPin, INPUT_PULLUP);
-  pinMode(RudderRightSwitchPin, INPUT_PULLUP);
-  pinMode(X9C_B_Rudder_ChipSelectPin7, OUTPUT);
-  pinMode(X9C_B_Rudder_UpDownPin2, OUTPUT);
-  pinMode(X9C_B_Rudder_IncDecPin1, OUTPUT);
-  debouncer1.attach(SailsInSwitchPin); debouncer1.interval(5);
-  debouncer2.attach(SailsOutSwitchPin); debouncer2.interval(5);
-  debouncer3.attach(RudderLeftSwitchPin); debouncer3.interval(5);
-  debouncer4.attach(RudderRightSwitchPin); debouncer4.interval(5);
+    pinMode(SailsInSwitchPin, INPUT_PULLUP);
+    pinMode(SailsOutSwitchPin, INPUT_PULLUP);
+    pinMode(X9C_A_Sails_ChipSelectPin7, OUTPUT);
+    pinMode(X9C_A_Sails_UpDownPin2, OUTPUT);
+    pinMode(X9C_A_Sails_IncDecPin1, OUTPUT);
+    pinMode(RudderLeftSwitchPin, INPUT_PULLUP);
+    pinMode(RudderRightSwitchPin, INPUT_PULLUP);
+    pinMode(X9C_B_Rudder_ChipSelectPin7, OUTPUT);
+    pinMode(X9C_B_Rudder_UpDownPin2, OUTPUT);
+    pinMode(X9C_B_Rudder_IncDecPin1, OUTPUT);
+    debouncer1.attach(SailsInSwitchPin);
+    debouncer1.interval(5);
+    debouncer2.attach(SailsOutSwitchPin);
+    debouncer2.interval(5);
+    debouncer3.attach(RudderLeftSwitchPin);
+    debouncer3.interval(5);
+    debouncer4.attach(RudderRightSwitchPin);
+    debouncer4.interval(5);
 
-  Serial.begin(115200);
-  Serial.println("X9C_A_Sails103 Sails Demo with Prototype PCB 12-26-2020");
-  Serial.print(" nCount @ Voltage Minimum = "); Serial.print(SailsCountMin); Serial.println("%");
-  Serial.print(" nCount @ Voltage Maximum = "); Serial.print(SailsCountMax); Serial.println("%");
-  Serial.println("X9C_B_Rudder103 Rudder Demo with Prototype PCB 12-26-2020");
-  Serial.print(" nCount @ Voltage Minimum = "); Serial.print(RudderCountMin); Serial.println("%");
-  Serial.print(" nCount @ Voltage Maximum = "); Serial.print(RudderCountMax); Serial.println("%");
+    Serial.begin(115200);
+    Serial.println("X9C_A_Sails103 Sails Demo with Prototype PCB 12-26-2020");
+    Serial.print(" nCount @ Voltage Minimum = ");
+    Serial.print(SailsCountMin);
+    Serial.println("%");
+    Serial.print(" nCount @ Voltage Maximum = ");
+    Serial.print(SailsCountMax);
+    Serial.println("%");
+    Serial.println("X9C_B_Rudder103 Rudder Demo with Prototype PCB 12-26-2020");
+    Serial.print(" nCount @ Voltage Minimum = ");
+    Serial.print(RudderCountMin);
+    Serial.println("%");
+    Serial.print(" nCount @ Voltage Maximum = ");
+    Serial.print(RudderCountMax);
+    Serial.println("%");
 
-  initialize_sails();
-  initialize_rudder();
+    initialize_sails();
+    initialize_rudder();
 }
 
 void loop()
 {
-  debouncer1.update(); SailsIn = debouncer1.read();
-  debouncer2.update(); SailsOut = debouncer2.read();
-  sails_control();
-  debouncer3.update(); RudderLeft = debouncer3.read();
-  debouncer4.update(); RudderRight = debouncer4.read();
-  rudder_control();
+    debouncer1.update();
+    SailsIn = debouncer1.read();
+    debouncer2.update();
+    SailsOut = debouncer2.read();
+    sails_control();
+    debouncer3.update();
+    RudderLeft = debouncer3.read();
+    debouncer4.update();
+    RudderRight = debouncer4.read();
+    rudder_control();
 }
