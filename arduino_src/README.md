@@ -25,3 +25,7 @@ adaptivercsailing/arduino_src$ tree
 
 2 directories, 1 file
 ```
+
+## See also:
+1. https://stackoverflow.com/questions/9272882/eclipse-cdt-c-c-include-a-header-file-from-another-project/65975086#65975086
+1. https://github.com/ElectricRCAircraftGuy/AmboVent/blob/master/3-Software/Arduino/arduino_core/readme.md
