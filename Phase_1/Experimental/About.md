@@ -1,1 +1,0 @@
-Developers - **Please** use the space for all of your contributions and discussion items.

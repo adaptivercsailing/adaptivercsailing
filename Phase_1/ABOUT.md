@@ -1,3 +1,6 @@
 #### Phase One  
 **Feasibility Demonstration Prototype Interface** (Digital Potentiometers with Binary Inputs)  
 Construct a feasibility demonstration prototype interface which replaces the RC transmitter joystick potentiometers with microprocessor controlled digital potentiometers. Control signal inputs will be on/off toggled outputs from readily available adaptive devices such as sip & puff switches, chin-bump switches, wobble stick switches, eye-blink detectors. The interface will require a minor modification to the RC transmitter (substitution of a digital potentiometer voltages for the organic joystick potentiometer developed voltages). No other modifications would be required for either the RC receiver or the sailboat servo motors.
+
+
+Developers - **Please** upload your contributions and discussion items to the **Experimental Folder**.
